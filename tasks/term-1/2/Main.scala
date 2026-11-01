@@ -1,5 +1,6 @@
 package recfun
 import common._
+import scala.annotation.tailrec
 
 object Main {
   def main(args: Array[String]) {
@@ -9,6 +10,10 @@ object Main {
         print(pascal(col, row) + " ")
       println()
     }
+
+    println("\nParentheses Balancing")
+    println(s"(a + b) * (c - d): ${balance("(a + b) * (c - d)".toList)}")
+    println(s"())(: ${balance("())(".toList)}")
   }
 
   /**
@@ -29,7 +34,23 @@ object Main {
    * Exercise 2 Parentheses Balancing
    */
   def balance(chars: List[Char]): Boolean = {
-   
+    @tailrec
+    def loop(remaining: List[Char], opened: Int): Boolean = {
+      remaining match {
+        case Nil =>
+          opened == 0
+        case '(' :: tail =>
+          loop(tail, opened + 1)
+        case ')' :: _ if opened == 0 =>
+          false
+        case ')' :: tail =>
+          loop(tail, opened - 1)
+        case _ :: tail =>
+          loop(tail, opened)
+      }
+    }
+
+    loop(chars, 0)
   }
 
   /**
