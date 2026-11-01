@@ -15,7 +15,14 @@ object Main {
    * Exercise 1
    */
   def pascal(c: Int, r: Int): Int = {
-
+    (c, r) match {
+      case (column, row) if column < 0 || row < 0 || column > row =>
+        0
+      case (column, row) if column == 0 || column == row =>
+        1
+      case (column, row) =>
+        pascal(column - 1, row - 1) + pascal(column, row - 1)
+    }
   }
 
   /**
