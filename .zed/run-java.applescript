@@ -3,7 +3,7 @@ on run arguments
     set className to item 2 of arguments
     set projectRoot to item 3 of arguments
     set tabTitle to "Java: " & className
-    set javaCommand to "export JAVA_HOME=$(/usr/libexec/java_home -v 21); export PATH=\"$JAVA_HOME/bin:$PATH\"; clear; mkdir -p /tmp/j26-java && javac --release 21 -d /tmp/j26-java " & quoted form of sourceFile & " && java -cp /tmp/j26-java " & quoted form of className
+    set javaCommand to "export JAVA_HOME=$(/usr/libexec/java_home -v 21); export PATH=\"$JAVA_HOME/bin:$PATH\"; source_dir=$(/usr/bin/dirname " & quoted form of sourceFile & "); clear; mkdir -p /tmp/j26-java && javac --release 21 -d /tmp/j26-java \"$source_dir\"/*.java && java -cp /tmp/j26-java " & quoted form of className
 
     tell application "Ghostty"
         set targetTab to missing value

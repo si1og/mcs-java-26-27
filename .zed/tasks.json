@@ -1,7 +1,7 @@
 [
   {
     "label": "Java: compile current file",
-    "command": "mkdir -p /tmp/j26-java && javac --release 21 -d /tmp/j26-java \"$ZED_FILE\"",
+    "command": "mkdir -p /tmp/j26-java && javac --release 21 -d /tmp/j26-java \"$(dirname \"$ZED_FILE\")\"/*.java",
     "use_new_terminal": false,
     "allow_concurrent_runs": false,
     "reveal": "always"
