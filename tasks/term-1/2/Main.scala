@@ -1,5 +1,4 @@
 package recfun
-import scala.annotation.tailrec
 
 object Main {
   def main(args: Array[String]) {
@@ -23,7 +22,7 @@ object Main {
         println(solution.mkString("[", ", ", "]"))
         printBoard(solution)
       case None =>
-        println("Решение не найдено")
+        println("Solution not found")
     }
   }
 
@@ -45,7 +44,6 @@ object Main {
    * Exercise 2 Parentheses Balancing
    */
   def balance(chars: List[Char]): Boolean = {
-    @tailrec
     def loop(remaining: List[Char], opened: Int): Boolean = {
       remaining match {
         case Nil =>
@@ -85,7 +83,7 @@ object Main {
         countChange(amount, tail) + countChange(amount - coin, coin :: tail)
     }
   }
-  
+
   /**
    * Excerice 4 N-Queens Problem
    * Write a function that provides a solution for n-queens problem if possible
@@ -100,7 +98,6 @@ object Main {
 
   def nQueens(size: Int): Option[Array[Int]] = {
     def isSafe(column: Int, placedQueens: List[Int]): Boolean = {
-      @tailrec
       def check(queens: List[Int], rowDistance: Int): Boolean = {
         queens match {
           case Nil =>
